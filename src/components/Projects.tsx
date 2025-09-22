@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ExternalLink, Github } from "lucide-react";
+import { GITHUB_URL } from "@/lib/constants";
 
 const Projects = () => {
   const projects = [
@@ -11,7 +12,7 @@ const Projects = () => {
       image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
       tags: ["React", "Node.js", "Stripe", "MongoDB"],
       demoUrl: "#",
-      githubUrl: "#",
+      githubUrl: GITHUB_URL,
       featured: true
     },
     {
@@ -20,7 +21,7 @@ const Projects = () => {
       image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
       tags: ["React", "TypeScript", "Socket.io", "PostgreSQL"],
       demoUrl: "#",
-      githubUrl: "#",
+      githubUrl: GITHUB_URL,
       featured: true
     },
     {
@@ -29,7 +30,7 @@ const Projects = () => {
       image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=600&h=400&fit=crop",
       tags: ["Vue.js", "Chart.js", "Weather API", "PWA"],
       demoUrl: "#",
-      githubUrl: "#",
+      githubUrl: GITHUB_URL,
       featured: false
     },
     {
@@ -38,7 +39,7 @@ const Projects = () => {
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
       tags: ["React", "D3.js", "Python", "REST API"],
       demoUrl: "#",
-      githubUrl: "#",
+      githubUrl: GITHUB_URL,
       featured: false
     },
     {
@@ -47,7 +48,7 @@ const Projects = () => {
       image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop",
       tags: ["Next.js", "Tailwind CSS", "Framer Motion", "MDX"],
       demoUrl: "#",
-      githubUrl: "#",
+      githubUrl: GITHUB_URL,
       featured: false
     },
     {
@@ -56,7 +57,7 @@ const Projects = () => {
       image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=600&h=400&fit=crop",
       tags: ["React", "Express.js", "Video.js", "MySQL"],
       demoUrl: "#",
-      githubUrl: "#",
+      githubUrl: GITHUB_URL,
       featured: false
     }
   ];
@@ -122,9 +123,11 @@ const Projects = () => {
                   <ExternalLink className="w-4 h-4 mr-2" />
                   Live Demo
                 </Button>
-                <Button size="sm" variant="outline" className="glass border-primary/20 hover:bg-primary/10">
-                  <Github className="w-4 h-4 mr-2" />
-                  Code
+                <Button asChild size="sm" variant="outline" className="glass border-primary/20 hover:bg-primary/10">
+                  <a href={project.githubUrl} target="_blank" rel="noreferrer">
+                    <Github className="w-4 h-4 mr-2" />
+                    Code
+                  </a>
                 </Button>
               </CardFooter>
             </Card>
@@ -172,8 +175,10 @@ const Projects = () => {
                       <ExternalLink className="w-3 h-3 mr-1" />
                       Demo
                     </Button>
-                    <Button size="sm" variant="outline" className="glass border-primary/20">
-                      <Github className="w-3 h-3" />
+                    <Button asChild size="sm" variant="outline" className="glass border-primary/20">
+                      <a href={project.githubUrl} target="_blank" rel="noreferrer">
+                        <Github className="w-3 h-3" />
+                      </a>
                     </Button>
                   </div>
                 </CardFooter>
@@ -187,9 +192,11 @@ const Projects = () => {
           <p className="text-text-secondary mb-6">
             Want to see more of my work?
           </p>
-          <Button variant="outline" size="lg" className="glass border-primary/20 hover:bg-primary/10">
-            <Github className="w-5 h-5 mr-2" />
-            View All On GitHub
+          <Button asChild variant="outline" size="lg" className="glass border-primary/20 hover:bg-primary/10">
+            <a href={GITHUB_URL} target="_blank" rel="noreferrer">
+              <Github className="w-5 h-5 mr-2" />
+              View All On GitHub
+            </a>
           </Button>
         </div>
       </div>

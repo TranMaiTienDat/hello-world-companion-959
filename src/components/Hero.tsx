@@ -2,8 +2,16 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
+import { GITHUB_URL } from "@/lib/constants";
 
 const Hero = () => {
+  const scrollToSection = (selector: string) => {
+    const section = document.querySelector(selector);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Background with gradient overlay */}
@@ -48,6 +56,7 @@ const Hero = () => {
             <Button 
               size="lg" 
               className="bg-gradient-primary hover:shadow-glow transition-smooth px-8 py-4 text-lg font-medium"
+              onClick={() => scrollToSection("#projects")}
             >
               View My Work
             </Button>
@@ -55,6 +64,7 @@ const Hero = () => {
               variant="outline" 
               size="lg"
               className="glass border-primary/20 hover:bg-primary/10 transition-smooth px-8 py-4 text-lg font-medium"
+              onClick={() => scrollToSection("#contact")}
             >
               <Mail className="w-5 h-5 mr-2" />
               Get In Touch
@@ -64,7 +74,9 @@ const Hero = () => {
           {/* Social Links */}
           <div className="flex justify-center gap-6 mb-12">
             <a 
-              href="#" 
+              href={GITHUB_URL} 
+              target="_blank"
+              rel="noreferrer"
               className="p-3 glass rounded-full hover:bg-primary/10 transition-smooth hover-glow group"
               aria-label="GitHub Profile"
             >

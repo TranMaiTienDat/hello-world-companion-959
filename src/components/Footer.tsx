@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin, Mail, Heart, ArrowUp } from "lucide-react";
+import { GITHUB_URL } from "@/lib/constants";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -33,11 +34,11 @@ const Footer = () => {
           
           {/* Brand Section */}
           <div className="md:col-span-2 space-y-6">
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold">P</span>
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-primary rounded-full flex items-center justify-center">
+                <span className="text-white font-bold tracking-wide">DAT</span>
               </div>
-              <span className="text-2xl font-bold text-foreground">Portfolio</span>
+              <span className="text-2xl font-bold text-foreground">Tran Mai Tien Dat</span>
             </div>
             
             <p className="text-text-secondary max-w-md leading-relaxed">
@@ -54,7 +55,9 @@ const Footer = () => {
 
             <div className="flex space-x-4">
               <a 
-                href="#" 
+                href={GITHUB_URL} 
+                target="_blank"
+                rel="noreferrer"
                 className="p-3 glass rounded-lg hover:bg-primary/10 transition-smooth hover-glow group"
                 aria-label="GitHub Profile"
               >

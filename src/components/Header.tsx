@@ -26,11 +26,11 @@ const Header = () => {
         <div className="flex items-center justify-between">
           
           {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">P</span>
+          <div className="flex items-center space-x-3">
+            <div className="w-9 h-9 bg-gradient-primary rounded-full flex items-center justify-center">
+              <span className="text-white font-bold text-base tracking-wide">DAT</span>
             </div>
-            <span className="text-xl font-bold text-foreground">Portfolio</span>
+            <span className="text-xl font-bold text-foreground">Tran Mai Tien Dat</span>
           </div>
 
           {/* Desktop Navigation */}

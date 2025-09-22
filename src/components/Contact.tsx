@@ -3,8 +3,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Mail, MapPin, Phone, Send, Github, Linkedin, Twitter } from "lucide-react";
+import { toast } from "@/components/ui/use-toast";
+import { Mail, MapPin, Phone, Send, Github, Linkedin, Instagram, Loader2 } from "lucide-react";
 import { useState } from "react";
+import { GITHUB_URL, INSTAGRAM_URL } from "@/lib/constants";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -12,11 +14,48 @@ const Contact = () => {
     email: "",
     message: ""
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
+
+    if (!formData.name || !formData.email || !formData.message) {
+      toast({
+        title: "Missing information",
+        description: "Please fill in your name, email, and message before sending.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const subject = `New message from ${formData.name}`;
+      const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`;
+      const mailtoLink = `mailto:tiendat8877@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      const mailWindow = window.open(mailtoLink, "_blank");
+
+      if (!mailWindow) {
+        window.location.href = mailtoLink;
+      }
+
+      toast({
+        title: "Email draft ready",
+        description: "Check your email client to review and send the message.",
+      });
+
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      toast({
+        title: "Unable to open email client",
+        description: "Please try again or email me directly at tiendat8877@gmail.com.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -108,9 +147,14 @@ const Contact = () => {
                   type="submit" 
                   size="lg" 
                   className="w-full bg-gradient-primary hover:shadow-glow transition-smooth"
+                  disabled={isSubmitting}
                 >
-                  <Send className="w-5 h-5 mr-2" />
-                  Send Message
+                  {isSubmitting ? (
+                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                  ) : (
+                    <Send className="w-5 h-5 mr-2" />
+                  )}
+                  {isSubmitting ? "Preparing..." : "Send Message"}
                 </Button>
               </form>
             </CardContent>
@@ -128,7 +172,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground">Email</h3>
-                    <p className="text-text-secondary">hello@yourname.com</p>
+                    <p className="text-text-secondary">tiendat8877@gmail.com</p>
                   </div>
                 </CardContent>
               </Card>
@@ -140,7 +184,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground">Phone</h3>
-                    <p className="text-text-secondary">+1 (555) 123-4567</p>
+                    <p className="text-text-secondary">+061 435311789</p>
                   </div>
                 </CardContent>
               </Card>
@@ -152,7 +196,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground">Location</h3>
-                    <p className="text-text-secondary">San Francisco, CA</p>
+                    <p className="text-text-secondary">Melbourne</p>
                   </div>
                 </CardContent>
               </Card>
@@ -166,7 +210,9 @@ const Contact = () => {
               <CardContent>
                 <div className="flex gap-4">
                   <a 
-                    href="#" 
+                    href={GITHUB_URL} 
+                    target="_blank"
+                    rel="noreferrer"
                     className="flex-1 p-4 glass rounded-lg hover:bg-primary/10 transition-smooth group text-center"
                     aria-label="GitHub Profile"
                   >
@@ -184,12 +230,14 @@ const Contact = () => {
                   </a>
                   
                   <a 
-                    href="#" 
+                    href={INSTAGRAM_URL} 
+                    target="_blank"
+                    rel="noreferrer"
                     className="flex-1 p-4 glass rounded-lg hover:bg-primary/10 transition-smooth group text-center"
-                    aria-label="Twitter Profile"
+                    aria-label="Instagram Profile"
                   >
-                    <Twitter className="w-6 h-6 mx-auto mb-2 group-hover:text-primary transition-fast" />
-                    <span className="text-sm text-text-secondary">Twitter</span>
+                    <Instagram className="w-6 h-6 mx-auto mb-2 group-hover:text-primary transition-fast" />
+                    <span className="text-sm text-text-secondary">Instagram</span>
                   </a>
                 </div>
               </CardContent>
