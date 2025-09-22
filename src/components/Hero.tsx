@@ -31,7 +31,7 @@ const Hero = () => {
 
           {/* Main Heading */}
           <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-            <span className="block text-foreground">Creative</span>
+            <span className="block text-foreground">Front-end</span>
             <span className="block bg-gradient-primary bg-clip-text text-transparent">
               Developer
             </span>
