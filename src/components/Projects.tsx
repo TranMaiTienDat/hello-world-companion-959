@@ -7,6 +7,16 @@ import { GITHUB_URL } from "@/lib/constants";
 const Projects = () => {
   const projects = [
     {
+      title: "Pomodoro Web App",
+      description:
+        "Next.js (App Router) + TypeScript Pomodoro app with i18n (/vi, /en), auto phase transitions, custom durations, tasks, inbox, stats, notifications, and ambient sound.",
+      image: "/placeholder.svg",
+      tags: ["Next.js", "TypeScript", "i18n", "LocalStorage"],
+      demoUrl: "https://pomodoro-web-fawn.vercel.app",
+  githubUrl: "https://github.com/TranMaiTienDat/Pomodoro-Web",
+      featured: true,
+    },
+    {
       title: "E-Commerce Platform",
       description: "Full-stack e-commerce solution with React, Node.js, and Stripe integration. Features include user authentication, product management, and order processing.",
       image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
@@ -119,10 +129,19 @@ const Projects = () => {
               </CardContent>
               
               <CardFooter className="flex gap-3">
-                <Button size="sm" className="flex-1 bg-gradient-primary hover:shadow-glow">
-                  <ExternalLink className="w-4 h-4 mr-2" />
-                  Live Demo
-                </Button>
+                {project.demoUrl && project.demoUrl !== "#" ? (
+                  <Button asChild size="sm" className="flex-1 bg-gradient-primary hover:shadow-glow">
+                    <a href={project.demoUrl} target="_blank" rel="noreferrer">
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Live Demo
+                    </a>
+                  </Button>
+                ) : (
+                  <Button size="sm" className="flex-1 bg-gradient-primary hover:shadow-glow" disabled>
+                    <ExternalLink className="w-4 h-4 mr-2" />
+                    Live Demo
+                  </Button>
+                )}
                 <Button asChild size="sm" variant="outline" className="glass border-primary/20 hover:bg-primary/10">
                   <a href={project.githubUrl} target="_blank" rel="noreferrer">
                     <Github className="w-4 h-4 mr-2" />
@@ -171,10 +190,19 @@ const Projects = () => {
                 
                 <CardFooter className="pt-2">
                   <div className="flex gap-2 w-full">
-                    <Button size="sm" className="flex-1 text-xs">
-                      <ExternalLink className="w-3 h-3 mr-1" />
-                      Demo
-                    </Button>
+                    {project.demoUrl && project.demoUrl !== "#" ? (
+                      <Button asChild size="sm" className="flex-1 text-xs">
+                        <a href={project.demoUrl} target="_blank" rel="noreferrer">
+                          <ExternalLink className="w-3 h-3 mr-1" />
+                          Demo
+                        </a>
+                      </Button>
+                    ) : (
+                      <Button size="sm" className="flex-1 text-xs" disabled>
+                        <ExternalLink className="w-3 h-3 mr-1" />
+                        Demo
+                      </Button>
+                    )}
                     <Button asChild size="sm" variant="outline" className="glass border-primary/20">
                       <a href={project.githubUrl} target="_blank" rel="noreferrer">
                         <Github className="w-3 h-3" />
